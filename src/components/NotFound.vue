@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'notfound',
+  name: 'bn-notfound',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

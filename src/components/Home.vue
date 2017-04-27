@@ -23,10 +23,7 @@
 
 <script>
 export default {
-  name: 'hello',
-  i18n: {
-    messages: {'en-US': {hello: 'xxgsdgx'}, 'jp': {hello: 'jxxxxp'}}
-  },
+  name: 'bn-home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

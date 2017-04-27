@@ -77,7 +77,8 @@
             <div class="clearfix"></div>
           </div>
           <div class="page-content">
-          <button @click="test"> test</button>
+          <button @click="test"> switch language</button>
+          <button @click="test2"> add resource</button>
             <transition :name="transitionName">
               <router-view></router-view>
             </transition>
@@ -97,9 +98,6 @@ import sidemenu from '@/components/sidemenu.vue'
 
 export default {
   name: 'app',
-  i18n: {
-    messages: {'en-US': {hello: 'xxx'}, 'jp': {hello: 'jxxxxp'}}
-  },
   data () {
     return {
       sideBarCollapse: false,
@@ -109,8 +107,8 @@ export default {
         active: false,
         icon: 'el-icon-message',
         items: [{title: 'form1', url: '/', active: false},
-                {title: 'form2', url: '/h2', active: false},
-                {title: 'form3', url: '/', active: false},
+                {title: 'form2', url: '/h1', active: false},
+                {title: 'form3', url: '/h2', active: false},
                 {title: 'table1', url: '/', active: false},
                 {title: 'table2', url: '/', active: false},
                 {title: 'table3', url: '/', active: false},
@@ -132,12 +130,14 @@ export default {
       this.sideBarCollapse = !this.sideBarCollapse
     },
     test: function test () {
-      this.$i18n.mergeLocaleMessage('en-US', {hello: '22xxxx222'})
-      if (this.$i18n.locale === 'jp') {
-        this.$i18n.locale = 'en-US'
+      if (this.$i18n.locale === 'ja') {
+        this.$i18n.locale = 'en'
       } else {
-        this.$i18n.locale = 'jp'
+        this.$i18n.locale = 'ja'
       }
+    },
+    test2: function test2 () {
+      this.$i18n.mergeLocaleMessage('en', {hello: '22xxxx222', test2: 'new_en_test222_new'})
     }
   },
   computed: {

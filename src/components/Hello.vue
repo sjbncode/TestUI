@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }} {{$t('hello')}}</h1>
+    <h1>{{ msg }} my test page{{$t('hello')}}   | {{$t('test2')}}</h1>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -23,8 +23,7 @@
 
 <script>
 export default {
-  name: 'hello',
-  // i18n: {messsages: {'en-US': {hello: 'gggg'}}},
+  name: 'bn-hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

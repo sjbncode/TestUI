@@ -22,11 +22,16 @@
 
 <script>
 export default {
-  name: 'hello2',
+  name: 'bn-hello2',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App2222222'
     }
+  },
+  methods: {
+    // loadLanguage: function () {
+    //   console.log(this.$options.name)
+    // }
   }
 }
 </script>
