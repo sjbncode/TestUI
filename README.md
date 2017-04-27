@@ -1,7 +1,21 @@
-# bnesp-client
-vue2
-element-UI http://element.eleme.io/#/zh-CN/component/tabs
+# ngslabui
 
-#add node_modules in the .dockerignore file!!!!!!
-docker build -t bnesp-client .
-docker run -d -p 8010:8010 -it --rm --name bnesp bnesp-client
+> ngs lab ui
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
