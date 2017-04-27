@@ -15,11 +15,6 @@
               <span class="logo-text">µAdmin</span>
               <span style="display: none" class="logo-text-icon">µ</span>
             </router-link>
-            <!-- <a id="logo" href="javascript:void(0)" :router-link="{to:'home'}" class="navbar-brand">
-              <span class="fa fa-rocket"></span>
-              <span class="logo-text">µAdmin</span>
-              <span style="display: none" class="logo-text-icon">µ</span>
-            </a> -->
           </div>
           <div class="topbar-main">
             <a id="menu-toggle" href="javascript:void(0)" class="hidden-xs"  @click="toggleNavigation"> <i class="fa fa-bars"></i>
@@ -57,12 +52,12 @@
           </div>
         </div>
       </div>
-      <div id="wrapper">     
+      <div id="wrapper">   
         <sidemenu :menu="menu1"></sidemenu>
         <div id="page-wrapper">
           <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
             <div class="page-header pull-left">
-              <div class="page-title">{{name}}</div>
+              <div class="page-title">{{name}} {{$t('hello')}}</div>
             </div>
             <!-- <ol class="breadcrumb page-breadcrumb pull-left">
               <li> <i class="fa fa-home"></i>
@@ -82,7 +77,10 @@
             <div class="clearfix"></div>
           </div>
           <div class="page-content">
-            <router-view></router-view>
+          <button @click="test"> test</button>
+            <transition :name="transitionName">
+              <router-view></router-view>
+            </transition>
           </div>
         </div>
         <div id="footer">
@@ -99,9 +97,13 @@ import sidemenu from '@/components/sidemenu.vue'
 
 export default {
   name: 'app',
+  i18n: {
+    messages: {'en-US': {hello: 'xxx'}, 'jp': {hello: 'jxxxxp'}}
+  },
   data () {
     return {
       sideBarCollapse: false,
+      transitionName: 'slide-left',
       menu1: [{title: 'Demo',
         open: false,
         active: false,
@@ -128,6 +130,14 @@ export default {
   methods: {
     toggleNavigation: function toggleNavigation () {
       this.sideBarCollapse = !this.sideBarCollapse
+    },
+    test: function test () {
+      this.$i18n.mergeLocaleMessage('en-US', {hello: '22xxxx222'})
+      if (this.$i18n.locale === 'jp') {
+        this.$i18n.locale = 'en-US'
+      } else {
+        this.$i18n.locale = 'jp'
+      }
     }
   },
   computed: {
@@ -139,13 +149,10 @@ export default {
 }
 </script>
 
-<style scoped>
-/*@import './assets/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css';*/
+<style>
 @import './assets/vendors/font-awesome/css/font-awesome.min.css';
 @import './assets/vendors/bootstrap/css/bootstrap.min.css';
 @import './assets/css/themes/style1/orange-blue.css';
 @import './assets/css/style-responsive.css';
-body{
-  margin-top: -28px
-}
+@import './assets/css/transition.css'
 </style>

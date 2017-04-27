@@ -38,6 +38,7 @@
                 <span class="menu-title">{{m.title}}</span>
                 <span class="fa arrow"></span>
               </a>
+              <transition name="fade">
               <ul class="nav nav-second-level collapse" :class="{in:m.open}">
                 <template v-for="s in m.items">
                   <li :class='{active:s.active}' @click.stop="menuClick(s)">
@@ -48,6 +49,7 @@
                   </li>
                 </template>
               </ul>
+            </transition>
             </li>
           </template>
           <template v-else>

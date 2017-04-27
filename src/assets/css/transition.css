@@ -1,0 +1,7 @@
+.slide-left-enter-active {
+  transition: all .3s ease;
+}
+.slide-left-enter {
+  transform: translateY(100px);
+  opacity: 0;
+}

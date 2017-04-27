@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ msg }} {{$t('hello')}}</h1>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -17,13 +17,14 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
-    <button @click="test">xx</button>
+    <button @click="test">xxdf</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'hello',
+  // i18n: {messsages: {'en-US': {hello: 'gggg'}}},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
