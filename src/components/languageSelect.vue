@@ -9,10 +9,10 @@
   </a>
   <ul class="dropdown-menu pull-right" @mouseleave="isOpen=false">
     <template v-for="(l,i) in languages">
-      <li>
+      <li :class="{active:selectedLang.name==l.name}">
         <a href="javascript:void(0)" @click="itemClick(l.name)">
         <img :src="l.img" alt="" class="img-responsive">
-        <span :class="{active:selectedLang.name==l.name}">{{l.displayName}}</span>
+        <span>{{l.displayName}}</span>
         </a>
       </li>
     </template>    
@@ -53,8 +53,4 @@ export default {
   }
 }
 </script>
-<style scoped>
-  span.active{
-    font-weight: bold;
-  }
-</style>
+
