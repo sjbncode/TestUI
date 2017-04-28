@@ -3,28 +3,25 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuei18n from 'vue-i18n'
-import langLoader from './extends/langLoader'
-Vue.config.productionTip = false
+import vueResource from 'vue-resource'
+import ElementUI from 'element-ui'
+import i18n from './extends/langLoader'
 
-Vue.use(Vuei18n)
-Vue.mixin(langLoader)
-const i18n = new Vuei18n({
-  locale: 'ja',
-  messages: {
-    ja: {
-      hello: 'こんにちは'
-    },
-    en: {
-      hello: 'helloxxx'
-    }
-  }
-})
+Vue.config.productionTip = false
+Vue.use(vueResource)
+Vue.use(ElementUI)
 
 /* eslint-disable no-new */
+
+router.beforeEach((from, to, next) => {
+  window.scrollTo(0, 0)
+  next()
+})
+
 new Vue({
   el: '#app',
   router,
   i18n,
   render: h => h(App)
 })
+

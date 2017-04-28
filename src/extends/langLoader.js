@@ -1,18 +1,46 @@
 import _ from 'underscore'
-window.loadedComponents = []
+import Vue from 'vue'
+import Vuei18n from 'vue-i18n'
+import config from '../config'
+import enLocale from 'element-ui/lib/locale/lang/en'
+import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
+import jaLocale from 'element-ui/lib/locale/lang/ja'
 
-export default {
+Vue.use(Vuei18n)
+
+if (!window.loadedComponents) {
+  window.loadedComponents = []
+}
+const autoLoader = {
   created () {
     this.loadLanguage()
   },
   methods: {
     loadLanguage: function () {
       var name = this.$options.name
-      if (name && !_.contains(window.loadedComponents, name) && name.startsWith('bn-')) {
+      if (name && !_.contains(window.loadedComponents, name) && name.startsWith(config.prefix)) {
         window.loadedComponents.push(name)
-        // todo
-        this.$i18n.mergeLocaleMessage('en', {hello: 'from server hello', test2: 'from server test'})
+        var url = config.apiServer + 'api/GetByComponentName?name=' + name
+        this.$http.get(url, {credentials: true}).then((res) => {
+          if (res.data) {
+            if (res.data.en) {
+              this.$i18n.mergeLocaleMessage('en', res.data.en)
+            }
+          }
+        })
       }
     }
   }
 }
+Vue.mixin(autoLoader)
+
+const langLoader = new Vuei18n({
+  locale: 'ja',
+  messages: {
+    ja: jaLocale,
+    en: enLocale,
+    zh: zhLocale
+  }
+})
+
+export default langLoader

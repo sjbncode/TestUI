@@ -28,7 +28,10 @@
                   </a>
                 </span>
               </div>
-            </form>            
+            </form>
+            <ul class="nav navbar navbar-top-links navbar-right mbn">
+              <language-select></language-select>       
+            </ul>          
           </div>
         </nav>
         <!--BEGIN MODAL CONFIG PORTLET-->    
@@ -59,21 +62,6 @@
             <div class="page-header pull-left">
               <div class="page-title">{{name}} {{$t('hello')}}</div>
             </div>
-            <!-- <ol class="breadcrumb page-breadcrumb pull-left">
-              <li> <i class="fa fa-home"></i>
-                &nbsp;
-                <a href="index.html">Home</a>
-                &nbsp;&nbsp; <i class="fa fa-angle-right"></i>
-                &nbsp;&nbsp;
-              </li>
-              <li class="hidden">
-                <a href="#">Dashboard</a>
-                &nbsp;&nbsp;
-                <i class="fa fa-angle-right"></i>
-                &nbsp;&nbsp;
-              </li>
-              <li class="active">Dashboard</li>
-            </ol> -->
             <div class="clearfix"></div>
           </div>
           <div class="page-content">
@@ -95,7 +83,7 @@
 
 <script>
 import sidemenu from '@/components/sidemenu.vue'
-
+import languageSelect from '@/components/languageSelect.vue'
 export default {
   name: 'app',
   data () {
@@ -145,13 +133,14 @@ export default {
       return this.$route.name
     }
   },
-  components: {sidemenu: sidemenu}
+  components: {sidemenu: sidemenu, languageSelect: languageSelect}
 }
 </script>
 
 <style>
 @import './assets/vendors/font-awesome/css/font-awesome.min.css';
 @import './assets/vendors/bootstrap/css/bootstrap.min.css';
+@import '../node_modules/element-ui/lib/theme-default/index.css';
 @import './assets/css/themes/style1/orange-blue.css';
 @import './assets/css/style-responsive.css';
 @import './assets/css/transition.css'

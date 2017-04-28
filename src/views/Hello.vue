@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ msg }} my test page{{$t('hello')}}   | {{$t('test')}}</h1>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -17,21 +17,22 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <button @click="test">xxdf</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'bn-hello2',
+  name: 'bn-hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App2222222'
+      msg: 'Welcome to Your Vue.js App'
     }
   },
   methods: {
-    // loadLanguage: function () {
-    //   console.log(this.$options.name)
-    // }
+    test: function test () {
+      this.msg = this.msg + 'aaass'
+    }
   }
 }
 </script>
