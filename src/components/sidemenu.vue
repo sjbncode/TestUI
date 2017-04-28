@@ -87,3 +87,30 @@ export default {
   }
 }
 </script>
+<style>
+#sidebar .collapse{
+  display: block!important;
+  height: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+}
+#sidebar .collapse.in{
+  height: auto;
+  visibility: visible;
+  opacity: 1
+}
+.sidebar-collapsed #sidebar .collapse.in{
+  display: block!important;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear
+
+}
+.sidebar-collapsed #sidebar li:hover .collapse,.sidebar-collapsed #sidebar li:hover .collapse.in{
+  height: auto;
+  visibility: visible;
+  opacity: 1
+}
+</style>
+

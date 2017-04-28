@@ -1,5 +1,5 @@
 <template>
-<li class="dropdown topbar-user" :class="{open:isOpen}" @mouseover="isOpen=true">
+<li class="dropdown topbar-user" :class="{open:isOpen}" @mouseover="isOpen=true"  @mouseleave="isOpen=false">
   <a href="javascript:void(0)" @click="menuClick">
     <img :src="selectedLang.img" alt="" class="img-responsive">
     &nbsp;
@@ -7,7 +7,7 @@
     &nbsp;
     <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu pull-right" @mouseleave="isOpen=false">
+  <ul class="dropdown-menu pull-right">
     <template v-for="(l,i) in languages">
       <li :class="{active:selectedLang.name==l.name}">
         <a href="javascript:void(0)" @click="itemClick(l.name)">
