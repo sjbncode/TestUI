@@ -27,20 +27,24 @@ const autoLoader = {
               this.$i18n.mergeLocaleMessage('en', res.data.en)
             }
           }
-        })
+        },()=>{console.log('xx')})
       }
     }
   }
 }
 Vue.mixin(autoLoader)
 
+const messages = {
+  ja: jaLocale,
+  en: enLocale,
+  zh: zhLocale
+}
+
 const langLoader = new Vuei18n({
   locale: 'ja',
-  messages: {
-    ja: jaLocale,
-    en: enLocale,
-    zh: zhLocale
-  }
+  fallbackLocale: 'en',
+  messages,
+  silentTranslationWarn: true
 })
 
 export default langLoader

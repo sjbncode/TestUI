@@ -30,7 +30,9 @@ export default {
       isOpen: false}
   },
   created () {
+    // console.log(this);
     this.localeName = this.$i18n.locale
+    // this.localeName = this.$lang
   },
   methods: {
     menuClick: function () {
@@ -39,6 +41,7 @@ export default {
     itemClick: function (name) {
       this.localeName = name
       this.$i18n.locale = name
+      // this.$lang=name
       this.isOpen = false
     }
   },

@@ -4,12 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import vueResource from 'vue-resource'
-import ElementUI from 'element-ui'
 import i18n from './extends/langLoader'
+import ElementUI from 'element-ui'
 
 Vue.config.productionTip = false
 Vue.use(vueResource)
 Vue.use(ElementUI)
+
+//Element UI, 兼容 vue-i18n 6.x ，方案
+Vue.locale=function(){}
 
 /* eslint-disable no-new */
 
