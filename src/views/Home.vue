@@ -18,10 +18,12 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
     <button @click="test">xxfdsa</button>
+    <js-tree></js-tree>
   </div>
 </template>
 
 <script>
+import jsTree from '../components/jsTree.vue'
 export default {
   name: 'bn-home',
   data () {
@@ -33,7 +35,8 @@ export default {
     test: function test () {
       this.msg = this.msg + 'aaass'
     }
-  }
+  },
+  components: {jsTree: jsTree}
 }
 </script>
 

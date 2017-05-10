@@ -65,8 +65,8 @@
             <div class="clearfix"></div>
           </div>
           <div class="page-content">
-          <button @click="test"> switch language</button>
-          <button @click="test2"> add resource</button>
+         <!--  <button @click="test"> switch language</button>
+          <button @click="test2"> add resource</button> -->
             <transition :name="transitionName">
               <router-view></router-view>
             </transition>
@@ -88,7 +88,7 @@ export default {
   name: 'app',
   data () {
     return {
-      sideBarCollapse: false,
+      sideBarCollapse: true,
       transitionName: 'slide-left',
       menu1: [{title: 'Demo',
         open: false,
@@ -97,7 +97,7 @@ export default {
         items: [{title: 'form1', url: '/', active: false},
                 {title: 'form2', url: '/h1', active: false},
                 {title: 'form3', url: '/h2', active: false},
-                {title: 'table1', url: '/', active: false},
+                {title: 'ViewProject1', url: '/project/1', active: false},
                 {title: 'table2', url: '/', active: false},
                 {title: 'table3', url: '/', active: false},
                 {title: 'Dialog', url: '/', active: false},
@@ -117,16 +117,16 @@ export default {
     toggleNavigation: function toggleNavigation () {
       this.sideBarCollapse = !this.sideBarCollapse
     },
-    test: function test () {
-      if (this.$i18n.locale === 'ja') {
-        this.$i18n.locale = 'en'
-      } else {
-        this.$i18n.locale = 'ja'
-      }
-    },
-    test2: function test2 () {
-      this.$i18n.mergeLocaleMessage('en', {hello: '22xxxx222', test2: 'new_en_test222_new'})
-    }
+    // test: function test () {
+    //   if (this.$i18n.locale === 'ja') {
+    //     this.$i18n.locale = 'en'
+    //   } else {
+    //     this.$i18n.locale = 'ja'
+    //   }
+    // },
+    // test2: function test2 () {
+    //   this.$i18n.mergeLocaleMessage('en', {hello: '22xxxx222', test2: 'new_en_test222_new'})
+    // }
   },
   computed: {
     name () {
