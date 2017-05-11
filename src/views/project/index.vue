@@ -106,11 +106,12 @@
 	</div>
 </template>
 <script>
-import config from '@/config';
+import baseView from '@/extends/baseView';
 import sampleReceive from '@/views/project/sample.vue';
 
 	export default{
-		name: config.prefix+'project-list',
+		mixins: [baseView],
+		name: 'project-list',
 		data () {
 			return {
 				activeTab:'SampleRecevie',

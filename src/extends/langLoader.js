@@ -1,7 +1,7 @@
 import _ from 'underscore'
 import Vue from 'vue'
 import Vuei18n from 'vue-i18n'
-import config from '../config'
+// import config from '../config'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
 import jaLocale from 'element-ui/lib/locale/lang/ja'
@@ -18,7 +18,10 @@ const autoLoader = {
   methods: {
     loadLanguage: function () {
       var name = this.$options.name
-      if (name && !_.contains(window.loadedComponents, name) && name.startsWith(config.prefix)) {
+      var config =this.$appSetting
+      if(!this.needLoadLanguage)
+        return
+      if (name && !_.contains(window.loadedComponents, name)) {
         window.loadedComponents.push(name)
         var url = config.apiServer + 'api/GetByComponentName?name=' + name
         this.$http.get(url, {credentials: true}).then((res) => {

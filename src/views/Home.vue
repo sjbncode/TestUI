@@ -23,8 +23,10 @@
 </template>
 
 <script>
+import baseView from '@/extends/baseView';
 import jsTree from '../components/jsTree.vue'
 export default {
+  mixins: [baseView],
   name: 'bn-home',
   data () {
     return {

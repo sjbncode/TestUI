@@ -62,8 +62,10 @@
     </div>
 </template>
 <script type="text/javascript">
+import baseView from '@/extends/baseView';
 import _ from 'underscore'
 export default {
+  mixins: [baseView],
   data () {
     return {
       StatusCount: {

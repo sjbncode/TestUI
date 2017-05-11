@@ -6,8 +6,10 @@ import router from './router'
 import vueResource from 'vue-resource'
 import i18n from './extends/langLoader'
 import ElementUI from 'element-ui'
+import config from '@/config'
 
 Vue.config.productionTip = false
+Vue.use(config)
 Vue.use(vueResource)
 Vue.use(ElementUI)
 

@@ -22,7 +22,9 @@
 </template>
 
 <script>
-export default {
+import baseView from '@/extends/baseView';
+export default {  
+  mixins: [baseView],
   name: 'bn-notfound',
   data () {
     return {
