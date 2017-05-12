@@ -1,48 +1,69 @@
-const mouse = {
-	mouseInit: function(el) {
-		this._mouseMoved = false;
-		el.onmousedown = function(event) {
-			this._mouseMoved = false;
-			this._mouseDownEvent = event;
-			var that = this;
-			// console.log(that)
-			// if (_mouseDistanceMet(event)) {
-				
-			// }
-				if (!this._mouseStarted) {
-					event.preventDefault();
-					this._mouseStarted = true;
-					return true;
-				}
+function addClass (el, cls) {
+  /* istanbul ignore if */
+  if (!cls || !(cls = cls.trim())) {
+    return
+  }
 
-		}
-		el.onmousemove = function(event) {
-			if (this._mouseStarted) {
-				 event.preventDefault();
-				 
-				this._mouseDrag(event);
-				 return true
-			}
-		}
-		document.onmouseup = function(event) {
-			this._mouseStarted = false
-			console.log('dfdf')
-		}
-	},
-	mouseDarg: function(event) {
-		console.log('m')
-	},
-	_mouseDistanceMet: function(event) {
-		return (Math.max(
-			Math.abs(this._mouseDownEvent.pageX - event.pageX),
-			Math.abs(this._mouseDownEvent.pageY - event.pageY)
-		) >= 3);
-	}
+  /* istanbul ignore else */
+  if (el.classList) {
+    if (cls.indexOf(' ') > -1) {
+      cls.split(/\s+/).forEach(function (c) { return el.classList.add(c); });
+    } else {
+      el.classList.add(cls);
+    }
+  } else {
+    var cur = " " + (el.getAttribute('class') || '') + " ";
+    if (cur.indexOf(' ' + cls + ' ') < 0) {
+      el.setAttribute('class', (cur + cls).trim());
+    }
+  }
 }
 
+function removeClass (el, cls) {
+  /* istanbul ignore if */
+  if (!cls || !(cls = cls.trim())) {
+    return
+  }
 
+  /* istanbul ignore else */
+  if (el.classList) {
+    if (cls.indexOf(' ') > -1) {
+      cls.split(/\s+/).forEach(function (c) { return el.classList.remove(c); });
+    } else {
+      el.classList.remove(cls);
+    }
+  } else {
+    var cur = " " + (el.getAttribute('class') || '') + " ";
+    var tar = ' ' + cls + ' ';
+    while (cur.indexOf(tar) >= 0) {
+      cur = cur.replace(tar, ' ');
+    }
+    el.setAttribute('class', cur.trim());
+  }
+}
 export default {
 	bind(el, binding, vnode) {
-		mouse.mouseInit(el);
+		var value = binding.value;
+		console.log('--bind--')
+		console.log(el)
+		if(value==true){
+			addClass(el,'selectable-active')
+		}else{
+
+			removeClass(el,'selectable-active')
+		}
+	},
+	update(el, binding, vnode){
+		var value = binding.value;		
+		console.log('--update--')	
+		console.log(value)
+		console.log(el)
+		
+		if(value==true){
+			addClass(el,'selectable-active')
+		}else{
+			
+			removeClass(el,'selectable-active')
+		}
 	}
 }
