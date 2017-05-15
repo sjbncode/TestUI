@@ -23,14 +23,16 @@ const autoLoader = {
         return
       if (name && !_.contains(window.loadedComponents, name)) {
         window.loadedComponents.push(name)
-        var url = config.apiServer + 'api/GetByComponentName?name=' + name
-        this.$http.get(url, {credentials: true}).then((res) => {
+        var url = this.$api.common.GetLangByComponentName+ '?name=' + name
+        this.$http.get(url).then((res) => {
           if (res.data) {
             if (res.data.en) {
               this.$i18n.mergeLocaleMessage('en', res.data.en)
             }
           }
-        },()=>{console.log('xx')})
+        }
+        // ,()=>{console.log('xx')}
+        )
       }
     }
   }

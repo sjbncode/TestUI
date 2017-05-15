@@ -58,6 +58,7 @@
 						<span class="stepStatus">{{projectStepProgress.SampleQC}}</span>
 						)
 					</span>
+					<QC></QC>
 					配置管理
 				</el-tab-pane>
 				<el-tab-pane name="third">
@@ -138,7 +139,7 @@ import sampleReceive from '@/views/project/sample.vue';
 
 			}
 		},
-		components:{sample:sampleReceive}
+		components:{sample:sampleReceive,QC: (resolve) => { require(['@/views/project/qc.vue'], resolve) }}
 	}
 </script>
 <style scoped>

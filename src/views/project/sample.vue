@@ -11,18 +11,19 @@
         </div>
         <el-table :data="dataInGrid" border max-height="600" 
                     @selection-change="handleSelectionChange"
-                    @cell-click="handleCellClick"
                     >
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column :label="$t('Sample#')" width="180">
                 <template scope="scope">
-                    <el-input v-model="scope.row.dataName"></el-input>
+                    <div v-selectable="{dataList:dataInGrid,data:scope.row,property:'dataName'}" >
+                    <el-input v-model="scope.row.dataName"></el-input></div>
+                    
                 </template>
             </el-table-column>
-            <el-table-column :label="$t('Sample Name')" width="180" property="New" class-name="selectable">
+            <el-table-column :label="$t('Sample Name')" width="180" property="New">
                 <template scope="scope"  >
                     <!-- :class="{'selectable-active':scope.row['selectable_New']}" -->
-                    <span @click="mulitSelect(scope.row,1,'New',1)" :v-selectable="aa">{{ scope.row.New }}x</span>
+                    <div v-selectable="{dataList:dataInGrid,data:scope.row,property:'New'}" >{{ scope.row.New }}x</div>
                 </template>
             </el-table-column>
             <el-table-column :label="$t('Rec Date')" width="180">
@@ -94,68 +95,6 @@ export default {
     test:function(){
 console.log('move')
     }   ,
-    handleCellClick:function(row,column,cell,event){
-        
-        if('selectable'!=column.className)
-            return
-        if(event.type=='click'){
-            var bindData=this.tableData;
-            var columnKey=column.property;
-            var index=_.indexOf(bindData,row);
-            var selectKey='selectable_'+columnKey; 
-           
-            if(event.altKey==false&&event.ctrlKey==false&&event.shiftKey==false){
-                
-                var newValue=!row[selectKey];
-                if(newValue){
-                    this.selctableFalgs[selectKey]=index;
-                }else{
-                    this.selctableFalgs[selectKey]=-1;
-                }
-                _.each(bindData,(x)=>{ this.$set(x,selectKey,false)});                
-                this.$set(row,selectKey,newValue);
-            }else if (event.altKey==false&&event.ctrlKey==true&&event.shiftKey==false) {
-                var newValue=!row[selectKey];
-                this.$set(row,selectKey,newValue);
-                var sourceIndex=this.selctableFalgs[selectKey];
-                if(newValue
-                    &&sourceIndex!=undefined&&sourceIndex>-1){
-                    console.log(index+'|'+sourceIndex)
-                    bindData[index][columnKey]=bindData[sourceIndex][columnKey]
-                }
-
-            }
-            //todo use shiftkey
-            else if((event.altKey==true&&event.shiftKey==false)&&event.ctrlKey==false)
-            {
-                if(this.selctableFalgs[selectKey]!=undefined&&this.selctableFalgs[selectKey]>-1){
-                    var sourceIndex=this.selctableFalgs[selectKey];
-                    var source=Math.min(sourceIndex,index);
-                    var target=Math.max(sourceIndex,index);                    
-                    for (var i = source; i <= target; i++) {                          
-                        bindData[i][columnKey]=bindData[sourceIndex][columnKey] ;  
-                        this.$set(bindData[i],selectKey,true);
-                    }
-                }
-            }
-        }
-    }
-    ,
-        mulitSelect:function(data,index,key,action){
-            // var selectKey='selectable_'+key; 
-            // if(data[selectKey]==undefined){
-            //     this.$set(data,selectKey,false);
-            // }
-            // if(action==1){
-            //     console.log('x')               
-            //     if(data[selectKey]){
-            //         this.selctableFalgs[selectKey]=false;
-            //     }else{
-            //         this.selctableFalgs[selectKey]=true;
-            //     }
-            //     data[selectKey]=!data[selectKey];
-            // }
-        },
         init: function() {
             this.getSamplesByOrderId(this.oid);
         },
@@ -294,9 +233,6 @@ console.log('move')
     .actions-warpping{
         margin-bottom: 10px;
         float: right;
-    }
-    .selectable .selectable-active{
-        background-color: red
     }
 
 </style>

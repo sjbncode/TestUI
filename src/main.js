@@ -6,12 +6,18 @@ import router from './router'
 import vueResource from 'vue-resource'
 import i18n from './extends/langLoader'
 import ElementUI from 'element-ui'
-import config from '@/config'
+import api from '@/api'
 
 Vue.config.productionTip = false
-Vue.use(config)
+Vue.use(api)
 Vue.use(vueResource)
 Vue.use(ElementUI)
+
+//auth
+Vue.http.interceptors.push(function(request, next) {
+  request.credentials=true;
+  next();
+});
 
 //Element UI, 兼容 vue-i18n 6.x ，方案
 Vue.locale=function(){}

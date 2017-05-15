@@ -143,6 +143,6 @@ export default {
 @import '../node_modules/element-ui/lib/theme-default/index.css';
 @import './assets/css/themes/style1/orange-blue.css';
 @import './assets/css/style-responsive.css';
-@import './assets/css/transition.css'
+@import './assets/css/style.css'
 
 </style>
